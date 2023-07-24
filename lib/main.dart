@@ -1,4 +1,5 @@
 import 'package:fatty_flutter/auth_state.dart';
+import 'package:fatty_flutter/models/auth_model.dart';
 import 'package:fatty_flutter/router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,10 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<AuthState>(
             lazy: false, create: (BuildContext createContext) => authState),
+        ChangeNotifierProvider<AuthFormProvider>(
+          lazy: false,
+          create: (_) => AuthFormProvider(),
+        ),
         Provider<AppRouter>(
           lazy: false,
           create: (BuildContext createContext) => AppRouter(authState),
