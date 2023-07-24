@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
             routerConfig: router,
             debugShowCheckedModeBanner: false,
             title: "Fatty Flutter App",
-            theme: ThemeData(primarySwatch: Colors.blue),
+            theme: ThemeData(primarySwatch: Colors.deepPurple),
           );
         },
       ),

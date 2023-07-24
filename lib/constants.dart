@@ -1,5 +1,6 @@
 const String rootRouteName = 'root';
 const String homeRouteName = 'home';
+const String landingRouteName = 'landing';
 const String loginRouteName = 'login';
 const String signupRouteName = 'signup';
 const String dashRouteName = 'dash';

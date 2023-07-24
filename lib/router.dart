@@ -3,6 +3,7 @@ import 'package:fatty_flutter/constants.dart';
 import 'package:fatty_flutter/screens/dash.dart';
 import 'package:fatty_flutter/screens/error.dart';
 import 'package:fatty_flutter/screens/home.dart';
+import 'package:fatty_flutter/screens/landing.dart';
 import 'package:fatty_flutter/screens/login.dart';
 import 'package:fatty_flutter/screens/profile.dart';
 import 'package:fatty_flutter/screens/signup.dart';
@@ -22,7 +23,7 @@ class AppRouter {
     navigatorKey: _rootNavigatorKey,
     refreshListenable: authState,
     debugLogDiagnostics: true,
-    initialLocation: '/',
+    initialLocation: '/landing',
     routes: [
       GoRoute(
         path: '/',
@@ -62,6 +63,14 @@ class AppRouter {
         ],
       ),
       GoRoute(
+        path: '/landing',
+        name: landingRouteName,
+        pageBuilder: (context, state) => MaterialPage(
+          child: const LandingSceen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
         path: '/login',
         name: loginRouteName,
         pageBuilder: (context, state) => MaterialPage(
@@ -89,9 +98,11 @@ class AppRouter {
       final registeringAccount = state.matchedLocation == signupLocation;
       final loggedIn = authState.loggedIn;
       final homelocation = state.namedLocation(homeRouteName);
+      final landingLocation = state.namedLocation(landingRouteName);
+      final inLandingScreen = state.matchedLocation == landingLocation;
 
-      if (!loggedIn && !loggingIn && !registeringAccount) {
-        return loginLocation;
+      if (!loggedIn && !loggingIn && !registeringAccount && !inLandingScreen) {
+        return landingLocation;
       }
       if (loggedIn && (loggingIn || registeringAccount)) {
         return homelocation;
