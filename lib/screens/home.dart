@@ -25,6 +25,14 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text('Go to Dash Screen'),
             ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                // Implement the logic to navigate to the Dash Screen
+                context.goNamed(homeAboutRouteName);
+              },
+              child: const Text('Go to About Screen'),
+            ),
             const SizedBox(height: 8),
             ElevatedButton(
               onPressed: () {

@@ -52,20 +52,28 @@ class _LoginScreenState extends State<LoginScreen> {
                   return ElevatedButton(
                     onPressed: () async {
                       if (model.validate) {
-                        bool isValidCredential = await context
+                        debugPrint("Validation pass...");
+                        bool isValidCredential = await contextConsumer
                             .read<AuthState>()
                             .isValidCredential(
-                                model.email.value!, model.password.value!);
+                              model.email.value!,
+                              model.password.value!,
+                            );
                         if (isValidCredential) {
+                          debugPrint("Setting login success...");
                           // ignore: use_build_context_synchronously
-                          context.read<AuthState>().loggedIn = true;
+                          contextConsumer.read<AuthState>().loggedIn = true;
                           // ignore: use_build_context_synchronously
-                          context.goNamed(loginRouteName);
+                          contextConsumer.goNamed(loginRouteName);
                         } else {
+                          debugPrint("Invalid Credential...");
                           // ignore: use_build_context_synchronously
-                          _formProvider.showInvalidCredentialsSnackbar(context);
+                          contextConsumer
+                              .read<AuthState>()
+                              .showInvalidCredentialsSnackbar(contextConsumer);
                         }
                       }
+                      debugPrint("Validation failed...");
                     },
                     child: const Text('Login'),
                   );

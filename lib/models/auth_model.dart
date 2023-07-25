@@ -55,16 +55,7 @@ class AuthFormProvider extends ChangeNotifier {
   }
 
   bool get validate {
-    return _email.value != null &&
-        _password.value != null &&
-        _name.value != null;
-  }
-
-  void showInvalidCredentialsSnackbar(BuildContext context) {
-    const snackBar = SnackBar(
-      content: Text('Invalid credentials. Please try again.'),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    return _email.value != null && _password.value != null;
   }
 }
 

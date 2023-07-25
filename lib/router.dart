@@ -7,6 +7,7 @@ import 'package:fatty_flutter/screens/landing.dart';
 import 'package:fatty_flutter/screens/login.dart';
 import 'package:fatty_flutter/screens/profile.dart';
 import 'package:fatty_flutter/screens/signup.dart';
+import 'package:fatty_flutter/widgets/place_holder.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -43,6 +44,33 @@ class AppRouter {
               child: const HomeScreen(),
               key: state.pageKey,
             ),
+            routes: [
+              GoRoute(
+                path: 'about',
+                name: homeAboutRouteName,
+                pageBuilder: (context, state) => MaterialPage(
+                  child: const PlaceHolder(
+                    text: "Welcome to about screen",
+                    title: "About",
+                    navigateTo: homeAboutDeepRouteName,
+                  ),
+                  key: state.pageKey,
+                ),
+                routes: [
+                  GoRoute(
+                    path: 'deep',
+                    name: homeAboutDeepRouteName,
+                    pageBuilder: (context, state) => MaterialPage(
+                      child: const PlaceHolder(
+                        text: "Welcome to about -> deep screen",
+                        title: "About -> Deep",
+                      ),
+                      key: state.pageKey,
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
           GoRoute(
             path: '/dash',

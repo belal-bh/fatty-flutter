@@ -53,4 +53,11 @@ class AuthState extends ChangeNotifier {
     }
     return false;
   }
+
+  void showInvalidCredentialsSnackbar(BuildContext context) {
+    const snackBar = SnackBar(
+      content: Text('Invalid credentials. Please try again.'),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 }
